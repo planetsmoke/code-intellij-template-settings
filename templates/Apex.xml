@@ -1,0 +1,48 @@
+<templateSet group="Apex">
+  <template name="guid" value="public static String generateGUID(){&#10;        /* Code stolen from:&#10;         * http://salesforce.stackexchange.com/questions/4073/how-to-generate-a-guid-uuid.&#10;         * Creates a near unique random GUID/UUID to be used for TransactionIds in the Create&#10;         * and Update API calls.&#10;         */&#10;        String kHexChars = '0123456789abcdef';&#10;        String returnValue = '';&#10;        Integer nextByte = 0;&#10;&#10;        for (Integer i=0; i&lt;16; i++) {&#10;&#10;            if (i==4 || i==6 || i==8 || i==10)&#10;                returnValue += '-';&#10;&#10;            nextByte = (Math.round(Math.random() * 255)-128) &amp; 255;&#10;&#10;            // these bitwise operations have something to do with it being a version 4 GUID&#10;            // but we don't have such needs for this in our scenarios&#10;//            if (i==6) {&#10;//                nextByte = nextByte &amp; 15;&#10;//                nextByte = nextByte | 64;&#10;//            }&#10;//&#10;//            if (i==8) {&#10;//                nextByte = nextByte &amp; 63;&#10;//                nextByte = nextByte | 128;&#10;//            }&#10;&#10;            returnValue += kHexChars.substring(nextByte &gt;&gt; 4, (nextByte &gt;&gt; 4) + 1);&#10;            returnValue += kHexChars.substring(nextByte &amp; 15, (nextByte &amp; 15) + 1);&#10;        }&#10;&#10;        return returnValue;&#10;    }" description="generateGUID method" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="sdjp" value="System.debug(JSON.serializePretty($END$));" description="System Debug JSON Serialize Pretty" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="mc" value="public static $class$ generate$class$(String jsonContent){&#10;        $class$ response;&#10;        response = ($class$)JSON.deserialize(&#10;            jsonContent,&#10;            $class$.class&#10;        );&#10;        return response;&#10;    }" description="MoldConstructor" toReformat="false" toShortenFQNames="true">
+    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="di" value="Database.insert($END$);" description="Database Insert" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="tm" value="static testMethod void testBehaviour(){&#10;&#10;    Test.startTest();&#10;    &#10;    $END$&#10;    &#10;    Test.stopTest();&#10;}" description="static testMethod void testBehaviour" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="cem" value="Messaging.SingleEmailMessage emailMessage = new Messaging.SingleEmailMessage();&#10;&#10;// if using Template, targetObjectId must be of type Contact&#10;emailMessage.targetObjectId = null;&#10;emailMessage.whatId = null;&#10;emailMessage.setTemplateId(null);&#10;&#10;emailMessage.setTreatTargetObjectAsRecipient(true);&#10;emailMessage.setSaveAsActivity(true);&#10;&#10;emailMessage.setToAddresses(new List&lt;String&gt;{null});&#10;emailMessage.setSubject(null);&#10;emailMessage.setReplyTo(null);&#10;emailMessage.setSenderDisplayName(null);" description="Create EmailMessage" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="cb" value="+ ' : ' +" description="Colon Break" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="chron" value="'0 ' + mm + ' ' + hh + ' * * ?'" description="Chron mask" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+  <template name="qa" value="QuickAction.QuickActionRequest request = new QuickAction.QuickActionRequest();&#10;request.setQuickActionName(Schema.Account.QuickAction.CreateContact);&#10;Contact contact = new Contact();&#10;request.setRecord(contact);&#10;request.setContextId(accountId);&#10;QuickAction.QuickActionResult result = QuickAction.performQuickAction(request);" description="Quick Action" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="APEX" value="true" />
+    </context>
+  </template>
+</templateSet>
