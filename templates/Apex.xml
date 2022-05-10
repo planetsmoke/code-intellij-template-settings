@@ -9,12 +9,6 @@
       <option name="APEX" value="true" />
     </context>
   </template>
-  <template name="mc" value="public static $class$ generate$class$(String jsonContent){&#10;        $class$ response;&#10;        response = ($class$)JSON.deserialize(&#10;            jsonContent,&#10;            $class$.class&#10;        );&#10;        return response;&#10;    }" description="MoldConstructor" toReformat="false" toShortenFQNames="true">
-    <variable name="class" expression="" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="APEX" value="true" />
-    </context>
-  </template>
   <template name="di" value="Database.insert($END$);" description="Database Insert" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="APEX" value="true" />
